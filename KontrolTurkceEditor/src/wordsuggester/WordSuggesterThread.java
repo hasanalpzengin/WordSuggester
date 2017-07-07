@@ -4,13 +4,9 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 import kontrolturkceeditor.connection;
 import kontrolturkceeditor.editor;
 
@@ -26,6 +22,7 @@ public class WordSuggesterThread extends Thread {
         this.input=input;
     }
     
+    @Override
     public void run(){
         editor gui = new editor();
         DefaultListModel model = (DefaultListModel) gui.suggestList.getModel();
@@ -47,8 +44,6 @@ public class WordSuggesterThread extends Thread {
             Logger.getLogger(WordSuggesterThread.class.getName()).log(Level.SEVERE, null, ex);
         }
         gui.setList(model);
-        editor.suggestList.setModel(model);
-        editor.suggestList.repaint();
     }
     
     @Override
